@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light p-2">
       <Link className="navbar-brand" to="/">
         Vidly
       </Link>
@@ -20,7 +20,7 @@ const NavBar = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
-          <NavLink className="nav-item nav-link " to="/add-headline">
+          <NavLink className="nav-item nav-link " to="/add-headline/new">
             Add Headline
           </NavLink>
         </div>

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { getHeadlines } from "../fakeHeadlineService";
+import { getHeadlines, deleteHeadline } from "../services/headlineService";
 import Card from "./card";
+import { toast } from "react-toastify";
+import { saveLike } from "./../services/headlineService";
 
 class Cards extends Component {
   state = {
@@ -8,23 +10,46 @@ class Cards extends Component {
   };
 
   async componentDidMount() {
-    const headlines = getHeadlines();
-    this.setState({ headlines });
+    const { data } = await getHeadlines();
+
+    this.setState({ headlines: data });
   }
 
-  handleLike = (headline) => {
+  handleLike = async (headline) => {
     const headlines = [...this.state.headlines];
     const index = headlines.indexOf(headline);
     headlines[index].likes++;
     this.setState({ headlines });
+    await saveLike(headline);
+  };
+  handleDelete = async (headline) => {
+    const originalHeadlines = [...this.state.headlines];
+
+    const headlines = this.state.headlines.filter(
+      (hl) => hl._id !== headline._id
+    );
+    this.setState({ headlines });
+    try {
+      await deleteHeadline(headline._id);
+    } catch (ex) {
+      if (ex.response && ex.response === 404)
+        toast.error("This movie has already been deleted");
+
+      this.setState({ headlines: originalHeadlines });
+    }
   };
   render() {
     return (
-      <div class="container">
-        <div class="row">
+      <div className="container-fluid">
+        <h1>{this.state.headlines.length}</h1>
+        <div className="row">
           {this.state.headlines.map((hl) => (
-            <div class="col">
-              <Card headline={hl} onLike={this.handleLike} />
+            <div className="col sm-6 m-5" key={hl.id}>
+              <Card
+                headline={hl}
+                onLike={this.handleLike}
+                onDelete={this.handleDelete}
+              />
             </div>
           ))}
         </div>
