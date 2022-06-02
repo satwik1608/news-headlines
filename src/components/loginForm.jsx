@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { saveHeadline, getHeadline } from "../services/headlineService";
 // import { saveHeadline } from "../services/fakeHeadlineService";
-import { login } from "../services/authService";
+import auth from "../services/authService";
 
 class loginForm extends Component {
   state = {
@@ -21,8 +21,7 @@ class loginForm extends Component {
   doSubmit = async () => {
     try {
       const { data } = this.state;
-      const { data: jwt } = await login(data.email, data.password); // getting the jwt token
-      localStorage.setItem("token", jwt);
+      await auth.login(data.username, data.password);
       window.location = "./"; // reloading the page
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {

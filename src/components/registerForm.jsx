@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { saveHeadline, getHeadline } from "../services/headlineService";
 // import { saveHeadline } from "../services/fakeHeadlineService";
 import { register } from "./../services/userService";
+import auth from "../services/authService";
 
 class registerForm extends Component {
   state = {
@@ -21,7 +22,7 @@ class registerForm extends Component {
   doSubmit = async () => {
     console.log(this.state.data);
     const response = await register(this.state.data);
-    localStorage.setItem("token", response.headers["x-auth-token"]);
+    auth.loginWithJwt(response.headers["x-auth-token"]);
     window.location = "./";
   };
 
