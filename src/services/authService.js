@@ -2,6 +2,9 @@ import http from "./httpService";
 import jwtDecode from "jwt-decode";
 
 const tokenkey = "token";
+
+http.setJwt(getJwt()); // removing bidirectional dependency with httpservice
+
 export async function login(email, password) {
   const { data: jwt } = await http.post(
     "https://ancient-island-05230.herokuapp.com/api/auth",
@@ -31,9 +34,14 @@ export function getCurrentUser() {
   }
 }
 
+export function getJwt() {
+  return localStorage.getItem(tokenkey);
+}
+
 export default {
   login,
   logout,
   getCurrentUser,
   loginWithJwt,
+  getJwt,
 };
