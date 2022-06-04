@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { saveHeadline, getHeadline } from "../services/headlineService";
 // import { saveHeadline } from "../services/fakeHeadlineService";
 
-class addHeadline extends Component {
+class AddHeadline extends Component {
   state = {
     data: {
       title: "",
@@ -92,4 +92,4 @@ class addHeadline extends Component {
   }
 }
 
-export default addHeadline;
+export default AddHeadline;

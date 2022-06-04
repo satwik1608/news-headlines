@@ -8,7 +8,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import addHeadline from "./components/addHeadline";
+import AddHeadline from "./components/addHeadline";
 import registerForm from "./components/registerForm";
 import loginForm from "./components/loginForm";
 import Logout from "./components/logout";
@@ -16,7 +16,6 @@ import auth from "./services/authService";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import ProtectedRoute from "./components/common/protectedRoute";
 
 class App extends Component {
   state = {};
@@ -38,7 +37,7 @@ class App extends Component {
               path="/add-headline/:id"
               render={(props) => {
                 if (!user) return <Redirect to="/login" />;
-                return <addHeadline {...props} />;
+                return <AddHeadline {...props} />;
               }}
             />
             <Route path="/register-user" component={registerForm}></Route>
