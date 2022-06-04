@@ -21,7 +21,7 @@ class loginForm extends Component {
   doSubmit = async () => {
     try {
       const { data } = this.state;
-      await auth.login(data.username, data.password);
+      await auth.login(data.email, data.password);
       window.location = "./"; // reloading the page
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
