@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { saveHeadline, getHeadline } from "../services/headlineService";
+import auth from "../services/authService";
 // import { saveHeadline } from "../services/fakeHeadlineService";
 
 class AddHeadline extends Component {
@@ -13,11 +14,21 @@ class AddHeadline extends Component {
 
   async componentDidMount() {
     const headLineId = this.props.match.params.id;
-    if (headLineId === "new") return;
-    const { data: headline } = await getHeadline(headLineId);
 
+    if (headLineId === "new") {
+      this.setState({ data: this.setAuthor(this.props.user.name) });
+      return;
+    }
+
+    const { data: headline } = await getHeadline(headLineId);
     this.setState({ data: this.mapToViewModel(headline) });
   }
+
+  setAuthor = (author) => {
+    return {
+      author: author,
+    };
+  };
 
   mapToViewModel = (headline) => {
     return {
@@ -41,7 +52,6 @@ class AddHeadline extends Component {
 
   handleChange = (e) => {
     const data = { ...this.state.data };
-
     data[e.currentTarget.name] = e.currentTarget.value;
     this.setState({ data });
   };
@@ -70,6 +80,7 @@ class AddHeadline extends Component {
               className="form-control"
               id="author"
               onChange={this.handleChange}
+              readOnly
             />
           </div>
           <div className="form-group">

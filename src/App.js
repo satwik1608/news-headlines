@@ -37,13 +37,18 @@ class App extends Component {
               path="/add-headline/:id"
               render={(props) => {
                 if (!user) return <Redirect to="/login" />;
-                return <AddHeadline {...props} />;
+                return <AddHeadline {...props} user={user} />;
               }}
             />
             <Route path="/register-user" component={registerForm}></Route>
             <Route path="/login" component={loginForm}></Route>
             <Route path="/logout" component={Logout}></Route>
-            <Route path="/" component={Cards}></Route>
+            <Route
+              path="/"
+              render={(props) => {
+                return <Cards user={user} />;
+              }}
+            ></Route>
           </Switch>
         </main>
       </React.Fragment>

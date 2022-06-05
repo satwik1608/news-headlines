@@ -41,7 +41,7 @@ class Cards extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <h1>{this.state.headlines.length}</h1>
+        <h1>You currently have {this.state.headlines.length} headlines</h1>
         <div className="row">
           {this.state.headlines.map((hl) => (
             <div className="col sm-6 m-5" key={hl.id}>
@@ -49,6 +49,7 @@ class Cards extends Component {
                 headline={hl}
                 onLike={this.handleLike}
                 onDelete={this.handleDelete}
+                user={this.props.user}
               />
             </div>
           ))}
