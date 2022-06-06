@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+{
+  /* <script
+  src="https://kit.fontawesome.com/f6fe5c44ab.js"
+  crossorigin="anonymous"
+></script>; */
+}
 
 const Like = (props) => {
   return (

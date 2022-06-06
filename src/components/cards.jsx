@@ -41,7 +41,9 @@ class Cards extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <h1>You currently have {this.state.headlines.length} headlines</h1>
+        <h1 class="font-medium leading-tight text-4xl mt-0 mb-2 text-black-600">
+          You currently have {this.state.headlines.length} headlines
+        </h1>
         <div className="row">
           {this.state.headlines.map((hl) => (
             <div className="col sm-6 m-5" key={hl.id}>

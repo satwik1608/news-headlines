@@ -12,6 +12,7 @@ import AddHeadline from "./components/addHeadline";
 import registerForm from "./components/registerForm";
 import loginForm from "./components/loginForm";
 import Logout from "./components/logout";
+import UserProfile from "./components/userProfile";
 import auth from "./services/authService";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -43,6 +44,12 @@ class App extends Component {
             <Route path="/register-user" component={registerForm}></Route>
             <Route path="/login" component={loginForm}></Route>
             <Route path="/logout" component={Logout}></Route>
+            <Route
+              path="/profile"
+              render={(props) => {
+                return <UserProfile {...props} user={user} />;
+              }}
+            ></Route>
             <Route
               path="/"
               render={(props) => {
