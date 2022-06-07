@@ -16,7 +16,7 @@ class AddHeadline extends Component {
     const headLineId = this.props.match.params.id;
 
     if (headLineId === "new") {
-      this.setState({ data: this.setAuthor(this.props.user.name) });
+      this.setState({ data: this.setAuthor(this.props.user.firstname) });
       return;
     }
 
@@ -134,7 +134,7 @@ class AddHeadline extends Component {
               className="shadow appearance-none border  w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               value={this.state.data.author}
               name="author"
-              type="texr"
+              type="text"
               id="author"
               onChange={this.handleChange}
               placeholder="Eren"

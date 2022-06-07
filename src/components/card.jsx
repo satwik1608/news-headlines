@@ -6,37 +6,6 @@ import "../card.css";
 class Card extends Component {
   render() {
     const { headline } = this.props;
-    // return (
-    //   <div class="card-group">
-    //     <div class="card">
-    //       <div class="card-body">
-    //         <h5 class="card-title">{this.props.headline.title}</h5>
-    //         <p class="card-text">{this.props.headline.body}</p>
-    //         <p class="card-text">
-    //           <small class="text-muted"> - {this.props.headline.author}</small>
-    //         </p>
-    //         <Like
-    //           onLike={() => this.props.onLike(this.props.headline)}
-    //           likes={this.props.headline.likes}
-    //         />
-    //         <button
-    //           onClick={() => {
-    //             this.props.onDelete(this.props.headline);
-    //           }}
-    //           className="btn btn-danger m-2"
-    //         >
-    //           Delete
-    //         </button>
-    //         {this.props.user &&
-    //           this.props.headline.author === this.props.user.name && (
-    //             <Link to={`/add-headline/${this.props.headline._id}`}>
-    //               Edit
-    //             </Link>
-    //           )}
-    //       </div>
-    //     </div>
-    //   </div>
-    // );
 
     return (
       <div className="bg-white shadow overflow-hidden sm:rounded-lg border border-black-400">
@@ -78,7 +47,7 @@ class Card extends Component {
           </button>
 
           {this.props.user &&
-            this.props.headline.author === this.props.user.name && (
+            this.props.headline.author === this.props.user.firstname && (
               <Link to={`/add-headline/${this.props.headline._id}`}>
                 <button class="inline-flex items-center justify-center w-10 h-10 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:shadow-outline hover:bg-gray-200">
                   <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
