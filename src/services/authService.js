@@ -7,7 +7,7 @@ http.setJwt(getJwt()); // removing bidirectional dependency with httpservice
 
 export async function login(email, password) {
   const { data: jwt } = await http.post(
-    "https://ancient-island-05230.herokuapp.com/api/auth",
+    "https://handsome-blue-shoulder-pads.cyclic.app/api/auth",
     {
       email,
       password,

@@ -14,7 +14,7 @@ class AddHeadline extends Component {
 
   async componentDidMount() {
     const headLineId = this.props.match.params.id;
-
+    console.log("mount");
     if (headLineId === "new") {
       this.setState({ data: this.setAuthor(this.props.user.firstname) });
       return;
